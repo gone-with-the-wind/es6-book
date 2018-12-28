@@ -1,4 +1,8 @@
 module.exports = [
+    {
+        test: /\.worker\.js$/, //以.worker.js结尾的文件将被worker-loader加载
+        loader:"worker-loader"
+    },
 	{
 		test: /\.jsx?$/,
 		exclude: /(node_modules|bower_components)/,

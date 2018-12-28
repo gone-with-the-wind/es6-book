@@ -1,68 +1,40 @@
-# React-Demo
+## 参考文献
+[如何在webpack下使用sharedWorker](https://segmentfault.com/q/1010000013821300)
+[worker-loader](https://github.com/webpack-contrib/worker-loader) 能支持Worker的使用。也可以用下这个[shared-worker-loader](https://github.com/mrtnbroder/shared-worker-loader)
+[JavaScript 运行机制详解：再谈Event Loop](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)
+[Web Worker 详细介绍](https://segmentfault.com/a/1190000012528806)
+[深入 HTML5 Web Worker 应用实践：多线程编程](https://www.ibm.com/developerworks/cn/web/1112_sunch_webworker/)
 
-### 基于Reactjs && Node 通讯的简单演示
 
-* Reactjs && ES6 && webpack构建移动端京东首页
-* 基于文件系统的Node.js服务端
-
-![Mou icon](./jd.png)
-
-## 安装与运行程序
-
-克隆项目
-
+## 在react中使用webworker
 ```
-> $ git clone https://github.com/CanFoo/react.git
-```
+# npm  install --save-dev worker-loader
 
-分别进入react目录和server目录下安装依赖包
+# webpack增加配置 
+rules: [
+  {
+    test: /\.worker\.js$/, //以.worker.js结尾的文件将被worker-loader加载
+    use: { loader: 'worker-loader' }
+  }
+]
 
-```
-> $ npm install
-```
+# test.worker.js文件如下
+// 监听消息
+onmessage = function(evt){
+  // 工作线程收到主线程的消息
+};
+let msg = '工作线程向主线程发送消息'
+postMessage(msg);
 
-在server目录下启动后台服务
+# app.js文件如下
+import Worker from './test.worker.js';
 
-```
-> $ npm run start
-```
+// 创建 worker 实例
+var worker = new Worker(); // 传入 worker 脚本文件的路径即可
+worker.postMessage({ a: 1 });
+worker.onmessage = function (event) {
+    console.log(event.data)
+};
 
-在react目录下启动webpack服务
-
-```
-> $ npm run dev
-```
-
-发布项目文件命令
-
-```
-> $ npm run build
-```
-
-执行完`npm run dev`命令后，打开浏览器 `http://localhost:8080/`运行项目，后台服务端口为 `3000`
-
-## 后台接口（jsonp请求）
-轮播图模块
-```
-http://localhost:3000/data/swiper
-```
-
-更多服务功能
-```
-http://localhost:3000/data/otherapp
-```
-
-秒杀折扣
-```
-http://localhost:3000/data/spike
-```
-
-更多种类选择
-```
-http://localhost:3000/data/more
-```
-
-猜你喜欢
-```
-http://localhost:3000/data/like
+worker.addEventListener("message", function (event) {});
 ```

@@ -1,5 +1,6 @@
 
 require('./app/lib/common.css');
+require('./note.js')
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -12,12 +13,12 @@ import Like from './app/components/like.jsx';
 
 ReactDOM.render(
 	<div>
-		<Search />
+		{/*<Search />
 		<Header source="http://localhost:3000/data/swiper" />
 		<Otherapp source="http://localhost:3000/data/otherapp" />
 		<Spike source="http://localhost:3000/data/spike" />
 		<More source="http://localhost:3000/data/more" />
-		<Like source="http://localhost:3000/data/like" />
+		<Like source="http://localhost:3000/data/like" />*/}
 	</div>, 
 	document.querySelector("#myApp")
 );

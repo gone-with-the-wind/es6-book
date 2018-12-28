@@ -1,0 +1,29 @@
+{
+  "name": "webworker",
+  "version": "1.0.0",
+  "description": "web worker一个简单的例子",
+  "Keywords": [
+    "web worker",
+    "shared worker"
+  ],
+  "Homepage": "xuexi.tutcw.com",
+  "Bugs": {
+    "url": "https://github.com/jianhuatu/webworker/issues",
+    "email": "tujianhua123@yeah.net"
+  },
+  "Repository": {
+    "type": "git",
+    "url": "https://github.com/jianhuatu/webworker.git"
+  },
+  "author": {
+    "name": "土建华",
+    "email": "tujianhua123@yeah.net",
+    "url": "http://xuexi.tutcw.com"
+  },
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

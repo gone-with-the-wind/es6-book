@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <input type="text" value="" id="example">
+  <div>结果是：<span id="result">0</span></div>
+  <a href="./index.html" target="_blank">test shared</a>
+
+  <script type="text/javascript">
+  // if(window.Worker){
+  //   var worker = new Worker("./js/worker.js");
+
+  //   var postData = {inputVal: 0};
+  //   var buffer = new ArrayBuffer(4);
+  //   var transferableData = new Uint32Array(buffer);
+
+  //   document.getElementById("example").oninput = function(){
+  //     transferableData[0] = Number(this.value);
+  //     // console.log(transferableData);
+  //     worker.postMessage(transferableData.buffer,[transferableData.buffer]);
+  //     // console.log(transferableData);
+  //   }
+
+  //   worker.onmessage = function(msg){
+  //     // console.log(postData);
+  //     // console.log(transferableData);
+  //     // console.log(msg.data);
+  //     transferableData = new Uint32Array(msg.data)
+  //     document.getElementById("result").innerHTML = transferableData[0];
+  //   }
+  //   worker.onerror = function(err){
+  //     console.log(err);
+  //   }
+  // }else{
+  //   console.log("不支持");
+  // }
+  
+
+   if(window.Worker){
+    var worker = new Worker("./js/haha.js");
+
+    // var postData = {inputVal: 0};
+    // var buffer = new ArrayBuffer(4);
+    // var transferableData = new Uint32Array(buffer);
+
+    document.getElementById("example").oninput = function(){
+      let a = Number(this.value);
+      // console.log(transferableData);
+      worker.postMessage(a);
+      // console.log(transferableData);
+    }
+
+    worker.onmessage = function(msg){
+      // console.log(postData);
+      // console.log(transferableData);
+      // console.log(msg.data);
+      // transferableData = new Uint32Array(msg.data)
+      document.getElementById("result").innerHTML = msg.data;
+    }
+    worker.onerror = function(err){
+      console.log(err);
+    }
+  }else{
+    console.log("不支持");
+  }
+  
+  </script>
+</html>

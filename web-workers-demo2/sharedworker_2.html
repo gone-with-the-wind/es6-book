@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <input type="text" value="" id="example">
+  <div>结果是：<span id="result">0</span></div>
+  <a href="./sharedworker.html" target="_blank">test shared</a>
+
+  <script type="text/javascript">
+  if(window.Worker){
+    var worker = new SharedWorker("./js/sharedworker.js");
+
+    document.getElementById("example").oninput = function(){
+      worker.port.postMessage(this.value);
+    }
+
+    worker.port.onmessage = function(msg){
+      document.getElementById("result").innerHTML = msg.data;
+    }
+    worker.onerror = function(err){
+      console.log(err);
+    }
+  }else{
+    console.log("不支持");
+  }
+  
+  </script>
+</html>

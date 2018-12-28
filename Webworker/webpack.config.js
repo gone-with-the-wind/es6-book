@@ -13,6 +13,7 @@ module.exports = {
 	devtool: process.env.WEBPACK_DEVTOOL || 'source-map',
 	output: {
 		path: path.join(__dirname, 'build'),
+
 		filename: 'bundle.js'
 	},
 	resolve: {
@@ -23,6 +24,7 @@ module.exports = {
 	},
 	devServer: {
 		contentBase: "./build", //静态资源的目录
+		 
 			noInfo: true, //  --no-info option
 			hot: true,   //自动刷新
 			inline: true
