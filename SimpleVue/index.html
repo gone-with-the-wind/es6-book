@@ -128,7 +128,15 @@ window.setTimeout(function(){
 
 
 
-
+function nodeToFragment(){
+	var fragment = document.createDocumentFragment
+	var child=el.firstChild
+	shile(child){
+		fragment.appendChild(child)
+		child=el.firstChild
+	}
+	return fragment
+}
 
 
 
